@@ -21,10 +21,10 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.right * velocidad * Time.deltaTime );
+        transform.Translate(transform.right * (velocidad * Time.deltaTime) );
         
         timer += Time.deltaTime;
-
+        // TODO: agregar mejor un collider y cambiar esto
         if (timer >= 4)
         {
             timer = 0;
