@@ -7,8 +7,6 @@ public class ProjectilePool : MonoBehaviour
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform firePoint;
     
-    
-    
     private ObjectPool<Projectile> pool;
     private void Awake()
     {
