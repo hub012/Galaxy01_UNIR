@@ -16,7 +16,7 @@ public class ProjectilePool : MonoBehaviour
     private Projectile CreateProjectile()
     {
         Projectile projectileCopia = Instantiate(projectilePrefab,firePoint.position,Quaternion.identity);
-        projectileCopia.MyPool = pool;
+        projectileCopia.ProjectilePool = pool;
         return projectileCopia;
     }
     private void GetProjectile(Projectile projectile)
