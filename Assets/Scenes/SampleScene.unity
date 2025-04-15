@@ -492,7 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1166136186}
   - component: {fileID: 1166136185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShipSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1338043972}
   - component: {fileID: 1338043973}
   - component: {fileID: 1338043974}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1180,7 +1180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1901104204}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,5 +31,20 @@ public class Enemy : MonoBehaviour
             releaseTimer = 0;
             _enemyPool.Release(this);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        _enemyPool.Release(this);
+    }
+
+    private void OntriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("OntriggerEnter2D");
+        if (other.tag == "Projectile")
+        {
+            Debug.Log("OntriggerEnter2D");
+        }
+
     }
 }
