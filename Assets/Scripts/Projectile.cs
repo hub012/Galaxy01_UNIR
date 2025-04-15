@@ -7,10 +7,18 @@ using UnityEngine.Pool;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float velocidad;
-    private ObjectPool<Projectile> myPool;
+    private ObjectPool<Projectile> projectilePool;
     
-    public ObjectPool<Projectile> MyPool { get => myPool; set => myPool = value; }
-    
+    public ObjectPool<Projectile> ProjectilePool { get => projectilePool; set => projectilePool = value; }
+
+  /*  public ObjectPool<Projectile> getProjectilePool()
+    {
+        return projectilePool;
+    }
+    public void setProjectilePool(ObjectPool<Projectile> value)
+    {
+        projectilePool = value;
+    }*/
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +36,7 @@ public class Projectile : MonoBehaviour
         if (timer >= 4)
         {
             timer = 0;
-            myPool.Release(this);
+            projectilePool.Release(this);
         }
     }
 }
