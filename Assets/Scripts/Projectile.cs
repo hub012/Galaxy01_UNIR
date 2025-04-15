@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline;
@@ -38,5 +39,10 @@ public class Projectile : MonoBehaviour
             timer = 0;
             projectilePool.Release(this);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        projectilePool.Release(this);
     }
 }

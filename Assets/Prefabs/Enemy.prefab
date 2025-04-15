@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  _enemyExplosionPrefab: {fileID: 3963021410022360592, guid: 336a0b6e4b510443ebc41107d005d1d7, type: 3}
 --- !u!61 &3764698775748592618
 BoxCollider2D:
   m_ObjectHideFlags: 0

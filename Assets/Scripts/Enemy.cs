@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     private ObjectPool<Enemy> _enemyPool; //variable
+
+    [SerializeField] private GameObject _enemyExplosionPrefab;
     //[SerializeField] private float speed = 5.0f;
     
     public ObjectPool<Enemy> EnemyPool { get => _enemyPool; set => _enemyPool = value; } //struct getter setter
@@ -36,15 +38,6 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         _enemyPool.Release(this);
-    }
-
-    private void OntriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("OntriggerEnter2D");
-        if (other.tag == "Projectile")
-        {
-            Debug.Log("OntriggerEnter2D");
-        }
-
+        Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
     }
 }
