@@ -39,5 +39,6 @@ public class Enemy : MonoBehaviour
     {
         _enemyPool.Release(this);
         Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
+        releaseTimer = 0; // Reseteo de timer
     }
 }
