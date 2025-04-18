@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,10 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float maxHealth = 100.0f;
+    [SerializeField] private float currentHealth = 100.0f;
     
+    public static event Action<float> OnPlayerHealthChanged;
     
      void Start()
     {
@@ -45,5 +49,17 @@ public class Player : MonoBehaviour
             //transform.Translate(new Vector2(1, 0));
             transform.Translate(Vector2.right * (speed * Time.deltaTime));
         }*/
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        OnPlayerHealthChanged?.Invoke(currentHealth/100f);
+        if (currentHealth <= 0)
+        {
+            // TODO: change this logic
+            Debug.Log("Player Murio");
+            gameObject.SetActive(false);
+        }
     }
 }

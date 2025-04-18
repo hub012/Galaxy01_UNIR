@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     private ObjectPool<Projectile> projectilePool;
-    
+    [SerializeField] private float damageValue;
     public ObjectPool<Projectile> ProjectilePool { get => projectilePool; set => projectilePool = value; }
 
   /*  public ObjectPool<Projectile> getProjectilePool()
@@ -44,5 +44,9 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         projectilePool.Release(this);
+        if (other.gameObject.tag.Equals("Enemy"))
+        {   Debug.Log(" llamame cuando choco con enemy");
+            other.gameObject.GetComponent<Enemy>().TakeDamage();
+        }
     }
 }

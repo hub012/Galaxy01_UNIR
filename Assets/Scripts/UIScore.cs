@@ -4,21 +4,32 @@ using UnityEngine;
 public class UIScore : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText; 
-    [SerializeField] private int scoreValue; 
+    private int scoreValue; 
     // Start is called before the first frame update
     void Start()
     {
-        SetScore(scoreValue);
+        scoreText.text = "0";
+        scoreValue = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetScore(scoreValue);
     }
 
-    public void SetScore(int score)
+    public void SetScore()
     {
-        scoreText.text = score.ToString();
+        scoreValue++;
+        scoreText.text = scoreValue.ToString();
+    }
+    
+    private void OnEnable()
+    {
+        Enemy.OnPlayerScoreChanged += SetScore;
+    }
+
+    private void OnDisable()
+    {
+        Enemy.OnPlayerScoreChanged -= SetScore;
     }
 }
