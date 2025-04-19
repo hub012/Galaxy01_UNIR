@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -9,7 +10,9 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     private ObjectPool<Projectile> projectilePool;
-    [SerializeField] private float damageValue;
+    [SerializeField] private GameObject shoot1;
+    [SerializeField] private GameObject shoot2;
+    [SerializeField] public bool CanUseSuperShoot { get; set; }
     public ObjectPool<Projectile> ProjectilePool { get => projectilePool; set => projectilePool = value; }
 
   /*  public ObjectPool<Projectile> getProjectilePool()
@@ -31,6 +34,16 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.Translate(transform.right * (velocidad * Time.deltaTime) );
+        if (CanUseSuperShoot)
+        {
+            shoot2.SetActive(true);
+            shoot1.SetActive(false);
+        }
+        else
+        {
+            shoot2.SetActive(false);
+            shoot1.SetActive(true);
+        }
         
         timer += Time.deltaTime;
         // TODO: agregar mejor un collider y cambiar esto
@@ -39,13 +52,15 @@ public class Projectile : MonoBehaviour
             timer = 0;
             projectilePool.Release(this);
         }
+
+       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         projectilePool.Release(this);
         if (other.gameObject.tag.Equals("Enemy"))
-        {   Debug.Log(" llamame cuando choco con enemy");
+        {  
             other.gameObject.GetComponent<Enemy>().TakeDamage();
         }
     }

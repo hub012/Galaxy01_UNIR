@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.Pool;
 public class ProjectilePool : MonoBehaviour
 {
+    public static ProjectilePool Instance { get; private set; }
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform firePoint;
-    
+    [SerializeField] public bool CanUseSuperShoot { get; set; }
     private ObjectPool<Projectile> pool;
     private void Awake()
     {
+        Instance = this;
         pool = new ObjectPool<Projectile>(CreateProjectile, GetProjectile, ReleaseProjectile);
     }
 
@@ -20,27 +22,19 @@ public class ProjectilePool : MonoBehaviour
         return projectileCopia;
     }
     private void GetProjectile(Projectile projectile)
-         {
-            projectile.transform.position = firePoint.position;
-            projectile.gameObject.SetActive(true);
-         }
+    { 
+        projectile.CanUseSuperShoot = CanUseSuperShoot;
+        projectile.transform.position = firePoint.position;
+        projectile.gameObject.SetActive(true);
+    }
     private void ReleaseProjectile(Projectile projectile)
     {
        projectile.gameObject.SetActive(false);
     }
     
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     // Update is called once per frame
     void Update()
     {
-     //Debug.Log(pool);
      if (Input.GetKeyDown(KeyCode.Space))
      {
          pool.Get();

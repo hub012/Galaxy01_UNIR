@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Player : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float maxHealth = 100.0f;
     [SerializeField] private float currentHealth = 100.0f;
-    
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private UIWeaponUpgrade _uiWeaponUpgrade;
     public static event Action<float> OnPlayerHealthChanged;
     
      void Start()
@@ -55,11 +57,15 @@ public class Player : MonoBehaviour
     {
         currentHealth -= damage;
         OnPlayerHealthChanged?.Invoke(currentHealth/100f);
+        UIWeaponUpgrade.Instance.OnWeaponLost();
+        ProjectilePool.Instance.CanUseSuperShoot = false;
         if (currentHealth <= 0)
         {
             // TODO: change this logic
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Debug.Log("Player Murio");
             gameObject.SetActive(false);
+            _uiWeaponUpgrade.OnWeaponLost();
         }
     }
 }
