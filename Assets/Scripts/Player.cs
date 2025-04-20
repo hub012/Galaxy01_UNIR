@@ -50,7 +50,6 @@ public class Player : MonoBehaviour
             //transform.Translate(new Vector2(1, 0));
             transform.Translate(Vector2.right * (speed * Time.deltaTime));
         }*/
-       speed = 0;
     }
 
     public void TakeDamage(float damage)
