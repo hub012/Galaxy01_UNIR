@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] private float speed = 5.0f;
-    [SerializeField] private float maxHealth = 100.0f;
     [SerializeField] private float currentHealth = 100.0f;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private UIWeaponUpgrade _uiWeaponUpgrade;
