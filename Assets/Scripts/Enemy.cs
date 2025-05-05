@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]private int health = 2;
     public static event Action OnPlayerScoreChanged;
     
-    public ObjectPool<Enemy> EnemyPool { get => _enemyPool; set => _enemyPool = value; } //struct getter setter
+    public ObjectPool<Enemy> EnemyPool { get => _enemyPool; set => _enemyPool = value; } 
     
     private float releaseTimer;
     private int releaseTimerLimit = 6;

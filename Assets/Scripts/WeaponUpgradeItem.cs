@@ -7,6 +7,7 @@ public class WeaponUpgradeItem : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private bool canUse;
+      [SerializeField] private AudioSource collectSound;
     public ObjectPool<WeaponUpgradeItem> ItemPool { get; set; } //struct getter setter
     void Update()
     {
@@ -17,6 +18,7 @@ public class WeaponUpgradeItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioSource.PlayClipAtPoint(collectSound.clip, transform.position);
             Debug.Log(other.gameObject.name);
             ItemPool.Release(this);
             ProjectilePool.Instance.CanUseSuperShoot = true;
