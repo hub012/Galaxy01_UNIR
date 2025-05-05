@@ -7,6 +7,7 @@ public class ProjectilePool : MonoBehaviour
     public static ProjectilePool Instance { get; private set; }
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private AudioSource shootSound;
     [SerializeField] public bool CanUseSuperShoot { get; set; }
     private ObjectPool<Projectile> pool;
     private void Awake()
@@ -32,12 +33,12 @@ public class ProjectilePool : MonoBehaviour
        projectile.gameObject.SetActive(false);
     }
     
-    // Update is called once per frame
     void Update()
     {
      if (Input.GetKeyDown(KeyCode.Space))
      {
          pool.Get();
+        AudioSource.PlayClipAtPoint(shootSound.clip, transform.position);
      }
     }
 }

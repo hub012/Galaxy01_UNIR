@@ -13,7 +13,7 @@ public class UIScore : MonoBehaviour
     void Start()
     {
         scoreText.text = "0";
-        scoreValue = _weaponUpgradeScore =  14;
+        scoreValue = _weaponUpgradeScore =  0;
     }
 
     void Update()

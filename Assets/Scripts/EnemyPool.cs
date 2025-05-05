@@ -16,12 +16,11 @@ public class EnemyPool : MonoBehaviour
 
     private void Awake()
     {
-        _enemyPool = new ObjectPool<Enemy>(CreateEnemy, GetEnemy, ReleaseEnemyS);
+        _enemyPool = new ObjectPool<Enemy>(CreateEnemy, GetEnemy, ReleaseEnemy);
     }
 
     private Enemy CreateEnemy()
     {
-
 
         Enemy enemyCopia = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         enemyCopia.EnemyPool = _enemyPool;
@@ -35,7 +34,7 @@ public class EnemyPool : MonoBehaviour
         enemy.gameObject.SetActive(true);
     }
 
-    private void ReleaseEnemyS(Enemy enemy)
+    private void ReleaseEnemy(Enemy enemy)
     {
         enemy.gameObject.SetActive(false);
     }

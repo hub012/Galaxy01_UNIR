@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
-
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
