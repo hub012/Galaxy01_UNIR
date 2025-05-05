@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     private ObjectPool<Enemy> _enemyPool; //variable
+    private AudioSource _audioSource;
 
     [SerializeField] private GameObject _enemyExplosionPrefab;
     //[SerializeField] private float speed = 5.0f;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         health = 2;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour
        
         if (other.gameObject.tag.Equals("Player"))
         {
+            _audioSource.Play();
             ReturnEnemyToPool();
             other.gameObject.GetComponent<Player>().TakeDamage(damageValue);
         }
@@ -64,6 +67,7 @@ public class Enemy : MonoBehaviour
         releaseTimer = 0; // Reseteo de timer
         health = 2;
         Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
+        _audioSource.Play();
         _enemyPool.Release(this);
     }
 }
