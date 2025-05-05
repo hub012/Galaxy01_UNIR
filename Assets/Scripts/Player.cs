@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 public class Player : MonoBehaviour
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
             Debug.Log("Player Murio");
             gameObject.SetActive(false);
             _uiWeaponUpgrade.OnWeaponLost();
+            SceneManager.LoadScene("Game Over Scene");
         }
     }
 }

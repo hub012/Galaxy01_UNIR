@@ -5,6 +5,7 @@ public class UIScore : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText; 
     private int scoreValue;
+    public static int finalScoreValue;
     private int _weaponUpgradeScore;
 
     
@@ -15,9 +16,9 @@ public class UIScore : MonoBehaviour
         scoreValue = _weaponUpgradeScore =  14;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        finalScoreValue = scoreValue;
     }
 
     public void SetScore()
@@ -33,7 +34,6 @@ public class UIScore : MonoBehaviour
            
         }
     }
-    
     private void OnEnable()
     {
         Enemy.OnPlayerScoreChanged += SetScore;
